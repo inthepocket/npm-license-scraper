@@ -1,0 +1,42 @@
+{
+  "name": "@inthepocket/npm-license-scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "bin": {
+    "license-generator": "dist/index.js"
+  },
+  "scripts": {
+    "compile": "tsc",
+    "build": "npm run compile && babel src --extensions \".ts\" --out-dir dist",
+    "test": "npm run build && node lib/index.js"
+  },
+  "keywords": [
+    "npm",
+    "license",
+    "checker",
+    "scraper"
+  ],
+  "author": "In The Pocket <hello@inthepocket.com> (http://inthepocket.com)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inthepocket/npm-license-scraper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/inthepocket/npm-license-scraper/issues"
+  },
+  "homepage": "https://github.com/inthepocket/npm-license-scraper#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-transform-typescript": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-typescript": "^7.7.2",
+    "@types/node": "^12.12.6",
+    "typescript": "^3.7.2"
+  }
+}

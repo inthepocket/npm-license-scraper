@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "paths": {
+      "*": ["node_modules/*"]
+    },
+    "target": "es6",
+    "declaration": true
+  },
+  "include": [
+    "src",
+    "global.d.ts"
+  ]
+}
