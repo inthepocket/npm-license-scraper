@@ -53,19 +53,16 @@ async function getPackageDetails(dep) {
     }
   }
 
-  if (!(0, _licenseUtils.isValidLicense)(info.license)) {
-    info.license = 'UNKNOWN';
-  }
-
   return {
     package: dep,
-    ...info
+    ...info,
+    license: (0, _licenseUtils.isValidLicense)(info.license) ? info.license : 'UNKNOWN',
+    isValid: (0, _licenseUtils.isValidLicense)(info.license)
   };
 }
 
 (async () => {
   const flags = (0, _util2.parseCLIFlags)(process.argv);
-  console.log(Boolean(flags.includeDev));
   let [dependencies, devDependencies] = await (0, _packageUtils.getDependencies)(Boolean(flags.includeDev));
 
   if (devDependencies !== null) {
