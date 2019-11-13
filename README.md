@@ -4,16 +4,14 @@ Dead simple license validator
 
 ## Usage
 
-Until we publish to npm, add this to your `package.json`'s dev dependencies:
-
-```json
-"license-checker": "github:inthepocket/license-checker"
-```
-
-Then run it via npm/npx/shell:
-
 ```shell
-$ node node_modules/license-checker
+$ npm i -D @inthepocket/npm-license-scraper
+
+# Via npx
+$ npx npm-license-scraper
+
+# Directly
+$ node node_modules/.bin/npm-license-scraper
 ```
 
 ## CLI Options
