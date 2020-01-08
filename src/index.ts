@@ -22,7 +22,6 @@ async function readFromLicenseFile(basePath: string) {
   const contents = (await promisify(fs.readFile)(licenseFile)).toString();
 
   const snippetMatches = licenseSnippets.map(snippet => new RegExp(snippet).exec(contents));
-  console.log(snippetMatches);
 
   const file = licenseFile.split('node_modules/')[1];
 
