@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { promisify } from 'util';
 
-import { isValidLicense, licenseSnippets } from './licenseUtils';
+import { isValidLicense } from './licenseUtils';
 import { parseCLIFlags, diff } from './util';
 import { getPackageDescriptor, getPackageInfo, getDependencies } from './packageUtils';
 
@@ -20,9 +20,6 @@ async function readFromLicenseFile(basePath: string) {
 
   const licenseFile = path.join(basePath, validLicenseFiles[0]);
   const contents = (await promisify(fs.readFile)(licenseFile)).toString();
-
-  const snippetMatches = licenseSnippets.map(snippet => new RegExp(snippet).exec(contents));
-  console.log(snippetMatches);
 
   const file = licenseFile.split('node_modules/')[1];
 
