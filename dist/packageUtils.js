@@ -36,7 +36,6 @@ async function getDependencies(includeDev = true) {
       return [[], Object.keys(pkg.devDependencies)];
     }
 
-    console.log(includeDev);
     return includeDev ? [Object.keys(pkg.dependencies), Object.keys(pkg.devDependencies)] : [Object.keys(pkg.dependencies), null];
   } catch (error) {
     console.log('Could not get dependencies from package.json:', error);
