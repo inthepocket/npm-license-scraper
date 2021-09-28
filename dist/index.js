@@ -84,13 +84,13 @@ async function getPackageDetails(dep) {
     if (typeof flags.export === 'string') {
       const filename = _path.default.join(process.cwd(), flags.export);
 
-      (0, _util.promisify)(_fs.default.writeFile)(filename, JSON.stringify(resolvedDeps, null, 2));
+      (0, _util.promisify)(_fs.default.writeFile)(filename, `${JSON.stringify(resolvedDeps, null, 2)}\n`);
       console.log(`Licenses exported to ${filename}`);
     } else if (typeof flags.export === 'boolean') {
       // Export to default licenses.json if no exported file name provided
       const filename = _path.default.join(process.cwd(), 'licenses.json');
 
-      (0, _util.promisify)(_fs.default.writeFile)(filename, JSON.stringify(resolvedDeps, null, 2));
+      (0, _util.promisify)(_fs.default.writeFile)(filename, `${JSON.stringify(resolvedDeps, null, 2)}\n`);
       console.log(`Licenses exported to ${filename}`);
     }
   } else {
