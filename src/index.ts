@@ -78,12 +78,12 @@ async function getPackageDetails(dep: string) {
   if (flags.export) {
     if (typeof flags.export === 'string') {
       const filename = path.join(process.cwd(), flags.export);
-      promisify(fs.writeFile)(filename, JSON.stringify(resolvedDeps, null, 2));
+      promisify(fs.writeFile)(filename, `${JSON.stringify(resolvedDeps, null, 2)}\n`);
       console.log(`Licenses exported to ${filename}`);
     } else if (typeof flags.export === 'boolean') {
       // Export to default licenses.json if no exported file name provided
       const filename = path.join(process.cwd(), 'licenses.json');
-      promisify(fs.writeFile)(filename, JSON.stringify(resolvedDeps, null, 2));
+      promisify(fs.writeFile)(filename, `${JSON.stringify(resolvedDeps, null, 2)}\n`);
       console.log(`Licenses exported to ${filename}`);
     }
   } else {
