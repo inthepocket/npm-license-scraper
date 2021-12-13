@@ -3,8 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.parseCLIFlags = parseCLIFlags;
 exports.diff = diff;
+exports.parseCLIFlags = parseCLIFlags;
 exports.readJSONFile = readJSONFile;
 
 var _fs = _interopRequireDefault(require("fs"));
