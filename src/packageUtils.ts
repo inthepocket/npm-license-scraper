@@ -3,7 +3,7 @@ import path from 'path';
 import { readJSONFile } from './util';
 
 function hasProp(o: Record<string, any>, prop: string) {
-  return Object.prototype.hasOwnProperty.call(o, prop)
+  return Object.prototype.hasOwnProperty.call(o, prop);
 }
 
 /**
@@ -11,7 +11,9 @@ function hasProp(o: Record<string, any>, prop: string) {
  * By default returns both dependencies and dev dependencies as a tuple.
  * If false is passed, will return a tuple with only the dependencies
  */
-export async function getDependencies(includeDev = true): Promise<[string[], string[] | null]> {
+export async function getDependencies(
+  includeDev = true
+): Promise<[string[], string[] | null]> {
   try {
     const pkg = await readJSONFile(path.join(process.cwd(), 'package.json'));
 
@@ -45,10 +47,19 @@ export async function getPackageDescriptor(dep: string) {
 /**
  * Returns metadata for package.json content
  */
-export function getPackageInfo(pkg: PackageJSON): PackageInfo {
-  const [url] = [pkg.homepage, pkg.repository?.url, pkg.repository?.baseUrl, pkg.repo]
+export function getPackageInfo(pkg: PackageJSON): {
+  version: PackageJSON['version'];
+  license: PackageJSON['license'];
+  url: undefined | string;
+} {
+  const [url] = [
+    pkg.homepage,
+    pkg.repository?.url,
+    pkg.repository?.baseUrl,
+    pkg.repo,
+  ]
     .filter(Boolean)
-    .filter(url => url.startsWith('https'));
+    .filter((url) => url.startsWith('https'));
 
   return {
     version: pkg.version,
