@@ -64,6 +64,6 @@ export function getPackageInfo(pkg: PackageJSON): {
   return {
     version: pkg.version,
     license: pkg.license,
-    url,
+    url: url ?? `https://npmjs.com/package/${pkg.name}`,
   };
 }
