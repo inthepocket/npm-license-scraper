@@ -47,11 +47,7 @@ export async function getPackageDescriptor(dep: string) {
 /**
  * Returns metadata for package.json content
  */
-export function getPackageInfo(pkg: PackageJSON): {
-  version: PackageJSON['version'];
-  license: PackageJSON['license'];
-  url: string;
-} {
+export function getPackageInfo(pkg: PackageJSON) {
   const [url] = [
     pkg.homepage,
     pkg.repository?.url,
