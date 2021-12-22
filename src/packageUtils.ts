@@ -50,7 +50,7 @@ export async function getPackageDescriptor(dep: string) {
 export function getPackageInfo(pkg: PackageJSON): {
   version: PackageJSON['version'];
   license: PackageJSON['license'];
-  url: undefined | string;
+  url: string;
 } {
   const [url] = [
     pkg.homepage,
@@ -59,7 +59,7 @@ export function getPackageInfo(pkg: PackageJSON): {
     pkg.repo,
   ]
     .filter(Boolean)
-    .filter((url) => url.startsWith('https'));
+    .filter((url) => url?.startsWith('https'));
 
   return {
     version: pkg.version,
