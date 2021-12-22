@@ -5,6 +5,7 @@ declare type CLIFlags = Partial<{
 }>;
 
 declare interface PackageJSON {
+  name: string;
   version: string;
   license?: string;
   repository?: {

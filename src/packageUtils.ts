@@ -47,11 +47,7 @@ export async function getPackageDescriptor(dep: string) {
 /**
  * Returns metadata for package.json content
  */
-export function getPackageInfo(pkg: PackageJSON): {
-  version: PackageJSON['version'];
-  license: PackageJSON['license'];
-  url: undefined | string;
-} {
+export function getPackageInfo(pkg: PackageJSON) {
   const [url] = [
     pkg.homepage,
     pkg.repository?.url,
@@ -59,11 +55,11 @@ export function getPackageInfo(pkg: PackageJSON): {
     pkg.repo,
   ]
     .filter(Boolean)
-    .filter((url) => url.startsWith('https'));
+    .filter((url) => url?.startsWith('https'));
 
   return {
     version: pkg.version,
     license: pkg.license,
-    url,
+    url: url ?? `https://npmjs.com/package/${pkg.name}`,
   };
 }
