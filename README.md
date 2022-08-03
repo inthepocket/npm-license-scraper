@@ -27,7 +27,7 @@ $ node node_modules/.bin/npm-license-scraper
 ### Options
 
 - `--export [filename]`: Export to a JSON file. (default `./licenses.json`)
-- `--includeDev`: Include dev dependencies in output (default `true`)
+- `--includeDev`: Include dev dependencies in output (default `false`)
 - `--exclude [package|package,package,package]`: Ignore certain packages from the check (e.g submodules, monorepo or private packages)
 
 ## Output format

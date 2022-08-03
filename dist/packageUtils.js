@@ -23,7 +23,7 @@ function hasProp(o, prop) {
  */
 
 
-async function getDependencies(includeDev = true) {
+async function getDependencies(includeDev) {
   try {
     const pkg = await (0, _util.readJSONFile)(_path.default.join(process.cwd(), 'package.json'));
 
