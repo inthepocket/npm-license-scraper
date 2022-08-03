@@ -3,8 +3,11 @@
   <h3 align="center">📜</h3>
   <h3 align="center">npm-license-scraper</h3>
   <p align="center">
-
+  
 Dead simple license scraper and validator with zero dependencies.
+
+![npm](https://img.shields.io/npm/v/@inthepocket/npm-license-scraper)
+
   </p>
 </div>
 
