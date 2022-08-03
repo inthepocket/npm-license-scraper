@@ -64,9 +64,8 @@ async function getPackageDetails(dep: string) {
     if (Array.isArray(flags.exclude) && flags.exclude.length > 1) {
       // Get a diff between excluded and current if multiple provided
       dependencies = diff(dependencies, flags.exclude);
-    } else if (typeof flags.exclude === 'boolean') {
-      // If only one flag provided, exclude it from current dependencies
-      // @ts-ignore
+    } else if (typeof flags.exclude === 'string') {
+      // If only one dependency provided, exclude it from current dependencies
       dependencies = dependencies.filter(dep => dep !== (flags.exclude));
     }
   }

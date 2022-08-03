@@ -1,6 +1,6 @@
 {
   "name": "@inthepocket/npm-license-scraper",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "",
   "main": "dist/index.js",
   "bin": {
@@ -9,7 +9,7 @@
   "scripts": {
     "compile": "tsc",
     "build": "npm run compile && babel src --extensions \".ts\" --out-dir dist",
-    "test": "npm run build && node lib/index.js"
+    "test": "npm run build && node dist/index.js"
   },
   "keywords": [
     "npm",

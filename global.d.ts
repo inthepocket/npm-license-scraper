@@ -1,6 +1,6 @@
 declare type CLIFlags = Partial<{
   export: boolean | string;
-  exclude: string[] | boolean;
+  exclude: string | string[];
   includeDev: boolean;
 }>;
 
