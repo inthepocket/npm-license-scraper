@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-  <h2 align="center">📜</h2>
+  <h3 align="center">📜</h3>
   <h3 align="center">npm-license-scraper</h3>
   <p align="center">
 
