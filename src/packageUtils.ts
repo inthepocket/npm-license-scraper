@@ -12,7 +12,7 @@ function hasProp(o: Record<string, any>, prop: string) {
  * If false is passed, will return a tuple with only the dependencies
  */
 export async function getDependencies(
-  includeDev = true
+  includeDev: boolean,
 ): Promise<[string[], string[] | null]> {
   try {
     const pkg = await readJSONFile(path.join(process.cwd(), 'package.json'));
