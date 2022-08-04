@@ -1,7 +1,7 @@
 {
   "name": "@inthepocket/npm-license-scraper",
   "version": "2.3.1",
-  "description": "",
+  "description": "Dead simple license scraper and validator with zero dependencies.",
   "main": "dist/index.js",
   "bin": {
     "npm-license-scraper": "dist/index.js"
