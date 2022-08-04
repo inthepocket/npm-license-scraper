@@ -62,9 +62,7 @@ async function getPackageDescriptor(dep) {
 
 
 function getPackageInfo(pkg) {
-  var _pkg$repository, _pkg$repository2;
-
-  const [url] = [pkg.homepage, (_pkg$repository = pkg.repository) === null || _pkg$repository === void 0 ? void 0 : _pkg$repository.url, (_pkg$repository2 = pkg.repository) === null || _pkg$repository2 === void 0 ? void 0 : _pkg$repository2.baseUrl, pkg.repo].filter(Boolean).filter(url => url === null || url === void 0 ? void 0 : url.startsWith('https'));
+  const [url] = [pkg.homepage, pkg.repository?.url, pkg.repository?.baseUrl, pkg.repo].filter(Boolean).filter(url => url?.startsWith('https'));
   return {
     version: pkg.version,
     license: pkg.license,
