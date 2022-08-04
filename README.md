@@ -6,7 +6,7 @@
   
 Dead simple license scraper and validator with zero dependencies.
 
-![npm](https://img.shields.io/npm/v/@inthepocket/npm-license-scraper)
+[![npm](https://img.shields.io/npm/v/@inthepocket/npm-license-scraper)](https://www.npmjs.com/package/@inthepocket/npm-license-scraper)
 
   </p>
 </div>
