@@ -9,7 +9,7 @@
   "scripts": {
     "compile": "tsc",
     "build": "npm run compile && babel src --extensions \".ts\" --out-dir dist",
-    "test": "npm run build && node dist/index.js"
+    "test": "npm run build && node dist/index.js --includeDev"
   },
   "keywords": [
     "npm",
@@ -31,12 +31,12 @@
     "access": "public"
   },
   "devDependencies": {
-    "@babel/cli": "7.18.10",
-    "@babel/core": "7.18.10",
-    "@babel/plugin-transform-typescript": "7.18.10",
-    "@babel/preset-env": "7.18.10",
+    "@babel/cli": "7.19.3",
+    "@babel/core": "7.19.6",
+    "@babel/plugin-transform-typescript": "7.20.0",
+    "@babel/preset-env": "7.19.4",
     "@babel/preset-typescript": "7.18.6",
-    "@types/node": ">= 16",
-    "typescript": "4.7.4"
+    "@types/node": ">= 18",
+    "typescript": "4.8.4"
   }
 }
