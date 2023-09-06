@@ -6,8 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.diff = diff;
 exports.parseCLIFlags = parseCLIFlags;
 exports.readJSONFile = readJSONFile;
-var _fs = _interopRequireDefault(require("fs"));
-var _util = require("util");
+var _promises = _interopRequireDefault(require("fs/promises"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 /**
  * Creates a nice object of flags from Node's process.argv
@@ -40,12 +39,14 @@ function diff(a, b) {
 /**
  * Safely read a file and parse it as JSON
  */
-async function readJSONFile(filePath) {
+async function readJSONFile(filePath, outputFail = true) {
   try {
-    const fileBuffer = await (0, _util.promisify)(_fs.default.readFile)(filePath);
+    const fileBuffer = await _promises.default.readFile(filePath);
     return JSON.parse(fileBuffer.toString());
   } catch (error) {
-    console.error('Could not read JSON file:', error);
+    if (outputFail) {
+      console.error('Could not read JSON file:', error);
+    }
     throw error;
   }
 }

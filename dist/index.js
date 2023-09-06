@@ -1,22 +1,21 @@
 #! /usr/bin/env node
 "use strict";
 
-var _fs = _interopRequireDefault(require("fs"));
+var _promises = _interopRequireDefault(require("fs/promises"));
 var _path = _interopRequireDefault(require("path"));
-var _util = require("util");
 var _licenseUtils = require("./licenseUtils");
-var _util2 = require("./util");
+var _util = require("./util");
 var _packageUtils = require("./packageUtils");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 async function readFromLicenseFile(basePath) {
-  const matches = await (0, _util.promisify)(_fs.default.readdir)(basePath);
+  const matches = await _promises.default.readdir(basePath);
   const validLicenseFiles = matches.filter(match => match.toUpperCase().startsWith('LICENSE'));
   if (validLicenseFiles.length < 1) {
     console.log(`No valid license files found in ${basePath}`);
     return null;
   }
   const licenseFile = _path.default.join(basePath, validLicenseFiles[0]);
-  const contents = (await (0, _util.promisify)(_fs.default.readFile)(licenseFile)).toString();
+  const contents = (await _promises.default.readFile(licenseFile)).toString();
   const file = licenseFile.split('node_modules/')[1];
   return {
     file,
@@ -46,7 +45,7 @@ async function getPackageDetails(dep) {
   };
 }
 (async () => {
-  const flags = (0, _util2.parseCLIFlags)(process.argv);
+  const flags = (0, _util.parseCLIFlags)(process.argv);
   let [dependencies, devDependencies] = await (0, _packageUtils.getDependencies)(Boolean(flags.includeDev));
   if (devDependencies !== null) {
     dependencies = [...dependencies, ...devDependencies];
@@ -54,7 +53,7 @@ async function getPackageDetails(dep) {
   if (flags.exclude) {
     if (Array.isArray(flags.exclude) && flags.exclude.length > 1) {
       // Get a diff between excluded and current if multiple provided
-      dependencies = (0, _util2.diff)(dependencies, flags.exclude);
+      dependencies = (0, _util.diff)(dependencies, flags.exclude);
     } else if (typeof flags.exclude === 'string') {
       // If only one dependency provided, exclude it from current dependencies
       dependencies = dependencies.filter(dep => dep !== flags.exclude);
@@ -66,12 +65,12 @@ async function getPackageDetails(dep) {
   if (flags.export) {
     if (typeof flags.export === 'string') {
       const filename = _path.default.join(process.cwd(), flags.export);
-      (0, _util.promisify)(_fs.default.writeFile)(filename, `${JSON.stringify(resolvedDeps, null, 2)}\n`);
+      _promises.default.writeFile(filename, `${JSON.stringify(resolvedDeps, null, 2)}\n`);
       console.log(`Licenses exported to ${filename}`);
     } else if (typeof flags.export === 'boolean') {
       // Export to default licenses.json if no exported file name provided
       const filename = _path.default.join(process.cwd(), 'licenses.json');
-      (0, _util.promisify)(_fs.default.writeFile)(filename, `${JSON.stringify(resolvedDeps, null, 2)}\n`);
+      _promises.default.writeFile(filename, `${JSON.stringify(resolvedDeps, null, 2)}\n`);
       console.log(`Licenses exported to ${filename}`);
     }
   } else {

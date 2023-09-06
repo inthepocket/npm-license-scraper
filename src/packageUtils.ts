@@ -36,12 +36,34 @@ export async function getDependencies(
 }
 
 /**
- * Returns descriptor (basepath and package.json content) for a package
+ * Returns descriptor (basePath and package.json content) for a package
+ * Emulating node js module resolution (see: https://medium.com/outbrain-engineering/node-js-module-resolution-af46715784ef)
  */
-export async function getPackageDescriptor(dep: string) {
-  const basePath = path.join(process.cwd(), 'node_modules', dep);
-  const pkg = await readJSONFile(path.join(basePath, 'package.json'));
-  return { basePath, pkg };
+export async function getPackageDescriptor(
+    dep: string,
+    basePath = process.cwd(),
+    basePathTries: string[] = []
+  ): Promise<{
+  basePath: string;
+  pkg: any;
+}> {
+  try {
+    const pkg = await readJSONFile(path.join(basePath, 'node_modules', dep, 'package.json'), false);
+
+    return { 
+      pkg,
+      basePath: path.join(basePath, 'node_modules', dep),
+    };
+  } catch (error) {
+    basePathTries = [...basePathTries, path.join(basePath, 'node_modules', dep)];
+
+    if (basePath === '/') {
+      console.error(`Could not find package: '${dep}', tried: \n\t${basePathTries.join('\n\t')}`);
+      return process.exit(1);
+    }
+
+    return getPackageDescriptor(dep, path.join(basePath, '..'), basePathTries);
+  }
 }
 
 /**
