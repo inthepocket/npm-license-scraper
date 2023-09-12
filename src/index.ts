@@ -1,8 +1,7 @@
 #! /usr/bin/env node
 
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
-import { promisify } from 'util';
 
 import { isValidLicense } from './licenseUtils';
 import { parseCLIFlags, diff } from './util';
@@ -10,7 +9,7 @@ import { getPackageDescriptor, getPackageInfo, getDependencies } from './package
 
 
 async function readFromLicenseFile(basePath: string) {
-  const matches = await promisify(fs.readdir)(basePath);
+  const matches = await fs.readdir(basePath);
   const validLicenseFiles = matches.filter(match => match.toUpperCase().startsWith('LICENSE'));
 
   if (validLicenseFiles.length < 1) {
@@ -19,7 +18,7 @@ async function readFromLicenseFile(basePath: string) {
   }
 
   const licenseFile = path.join(basePath, validLicenseFiles[0]);
-  const contents = (await promisify(fs.readFile)(licenseFile)).toString();
+  const contents = (await fs.readFile(licenseFile)).toString();
 
   const file = licenseFile.split('node_modules/')[1];
 
@@ -77,12 +76,12 @@ async function getPackageDetails(dep: string) {
   if (flags.export) {
     if (typeof flags.export === 'string') {
       const filename = path.join(process.cwd(), flags.export);
-      promisify(fs.writeFile)(filename, `${JSON.stringify(resolvedDeps, null, 2)}\n`);
+      fs.writeFile(filename, `${JSON.stringify(resolvedDeps, null, 2)}\n`);
       console.log(`Licenses exported to ${filename}`);
     } else if (typeof flags.export === 'boolean') {
       // Export to default licenses.json if no exported file name provided
       const filename = path.join(process.cwd(), 'licenses.json');
-      promisify(fs.writeFile)(filename, `${JSON.stringify(resolvedDeps, null, 2)}\n`);
+      fs.writeFile(filename, `${JSON.stringify(resolvedDeps, null, 2)}\n`);
       console.log(`Licenses exported to ${filename}`);
     }
   } else {

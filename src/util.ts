@@ -1,5 +1,4 @@
-import fs from 'fs';
-import { promisify } from "util";
+import fs from 'fs/promises';
 
 /**
  * Creates a nice object of flags from Node's process.argv
@@ -36,12 +35,14 @@ export function diff(a: any[], b: any[]) {
 /**
  * Safely read a file and parse it as JSON
  */
-export async function readJSONFile(filePath: string) {
+export async function readJSONFile(filePath: string, outputFail = true) {
   try {
-    const fileBuffer = await promisify(fs.readFile)(filePath);
+    const fileBuffer = await fs.readFile(filePath);
     return JSON.parse(fileBuffer.toString());
   } catch (error) {
-    console.error('Could not read JSON file:', error);
+    if (outputFail) {
+      console.error('Could not read JSON file:', error);
+    }
     throw error;
   }
 }
