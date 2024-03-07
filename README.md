@@ -3,6 +3,7 @@
 ### 📜 Dead simple license scraper with zero dependencies
 
 [![npm](https://img.shields.io/npm/v/@inthepocket/npm-license-scraper)](https://www.npmjs.com/package/@inthepocket/npm-license-scraper)
+![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)
 
 ## Introduction
 
