@@ -1,15 +1,8 @@
-<div align="center">
-  <br />
-  <h3 align="center">📜</h3>
-  <h3 align="center">npm-license-scraper</h3>
-  <p align="center">
-  
-Dead simple license scraper and validator with zero dependencies.
+<img src="./banner.png" alt="NPM license scraper by In The Pocket" width="100%">
+
+### 📜 Dead simple license scraper with zero dependencies
 
 [![npm](https://img.shields.io/npm/v/@inthepocket/npm-license-scraper)](https://www.npmjs.com/package/@inthepocket/npm-license-scraper)
-
-  </p>
-</div>
 
 ## Introduction
 
