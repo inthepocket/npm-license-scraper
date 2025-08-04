@@ -7,7 +7,7 @@ exports.diff = diff;
 exports.parseCLIFlags = parseCLIFlags;
 exports.readJSONFile = readJSONFile;
 var _promises = _interopRequireDefault(require("fs/promises"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * Creates a nice object of flags from Node's process.argv
  */

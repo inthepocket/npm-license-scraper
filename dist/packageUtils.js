@@ -8,7 +8,7 @@ exports.getPackageDescriptor = getPackageDescriptor;
 exports.getPackageInfo = getPackageInfo;
 var _path = _interopRequireDefault(require("path"));
 var _util = require("./util");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 function hasProp(o, prop) {
   return Object.prototype.hasOwnProperty.call(o, prop);
 }

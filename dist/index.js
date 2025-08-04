@@ -6,7 +6,7 @@ var _path = _interopRequireDefault(require("path"));
 var _licenseUtils = require("./licenseUtils");
 var _util = require("./util");
 var _packageUtils = require("./packageUtils");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 async function readFromLicenseFile(basePath) {
   const matches = await _promises.default.readdir(basePath);
   const validLicenseFiles = matches.filter(match => match.toUpperCase().startsWith('LICENSE'));
