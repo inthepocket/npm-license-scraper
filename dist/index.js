@@ -28,11 +28,10 @@ async function getPackageDetails(dep) {
     pkg
   } = await (0, _packageUtils.getPackageDescriptor)(dep);
   const info = (0, _packageUtils.getPackageInfo)(pkg);
-  const inferFromLicenseFile = await readFromLicenseFile(basePath);
 
   // When no license field is present in package.json we try and infer it from a LICENSE file
-  // if that file exists
   if (!info.license) {
+    const inferFromLicenseFile = await readFromLicenseFile(basePath);
     if (inferFromLicenseFile) {
       info.license = inferFromLicenseFile.contents;
     }
