@@ -6,6 +6,7 @@ var _path = _interopRequireDefault(require("path"));
 var _licenseUtils = require("./licenseUtils");
 var _util = require("./util");
 var _packageUtils = require("./packageUtils");
+var _formatters = require("./formatters");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 async function readFromLicenseFile(basePath) {
   const matches = await _promises.default.readdir(basePath);
@@ -64,12 +65,13 @@ async function getPackageDetails(dep) {
   if (flags.export) {
     if (typeof flags.export === 'string') {
       const filename = _path.default.join(process.cwd(), flags.export);
-      _promises.default.writeFile(filename, `${JSON.stringify(resolvedDeps, null, 2)}\n`);
+      const content = filename.endsWith('.ts') ? (0, _formatters.formatAsTypeScript)(resolvedDeps) : `${JSON.stringify(resolvedDeps, null, 2)}\n`;
+      await _promises.default.writeFile(filename, content);
       console.log(`Licenses exported to ${filename}`);
     } else if (typeof flags.export === 'boolean') {
       // Export to default licenses.json if no exported file name provided
       const filename = _path.default.join(process.cwd(), 'licenses.json');
-      _promises.default.writeFile(filename, `${JSON.stringify(resolvedDeps, null, 2)}\n`);
+      await _promises.default.writeFile(filename, `${JSON.stringify(resolvedDeps, null, 2)}\n`);
       console.log(`Licenses exported to ${filename}`);
     }
   } else {

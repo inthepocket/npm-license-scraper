@@ -9,7 +9,7 @@
   "scripts": {
     "compile": "tsc",
     "build": "npm run compile && babel src --extensions \".ts\" --out-dir dist",
-    "test": "npm run build && node dist/index.js --includeDev"
+    "test": "./scripts/test.sh"
   },
   "keywords": [
     "npm",

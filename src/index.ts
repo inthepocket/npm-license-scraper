@@ -6,6 +6,7 @@ import path from 'path';
 import { isValidLicense } from './licenseUtils';
 import { parseCLIFlags, diff } from './util';
 import { getPackageDescriptor, getPackageInfo, getDependencies } from './packageUtils';
+import { formatAsTypeScript } from './formatters';
 
 
 async function readFromLicenseFile(basePath: string) {
@@ -75,12 +76,15 @@ async function getPackageDetails(dep: string) {
   if (flags.export) {
     if (typeof flags.export === 'string') {
       const filename = path.join(process.cwd(), flags.export);
-      fs.writeFile(filename, `${JSON.stringify(resolvedDeps, null, 2)}\n`);
+      const content = filename.endsWith('.ts')
+        ? formatAsTypeScript(resolvedDeps)
+        : `${JSON.stringify(resolvedDeps, null, 2)}\n`;
+      await fs.writeFile(filename, content);
       console.log(`Licenses exported to ${filename}`);
     } else if (typeof flags.export === 'boolean') {
       // Export to default licenses.json if no exported file name provided
       const filename = path.join(process.cwd(), 'licenses.json');
-      fs.writeFile(filename, `${JSON.stringify(resolvedDeps, null, 2)}\n`);
+      await fs.writeFile(filename, `${JSON.stringify(resolvedDeps, null, 2)}\n`);
       console.log(`Licenses exported to ${filename}`);
     }
   } else {
