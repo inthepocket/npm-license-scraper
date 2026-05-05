@@ -11,10 +11,10 @@ Thanks for your interest in contributing to `npm-license-scraper`!
 
 1. Create a branch off `master`
 2. Make your changes
-3. Bump the version (major/minor/patch)
-4. Build the project: `npm run build` and commit the changes in `dist/`
-5. Run `npm test` to verify nothing is broken
-6. Open a pull request with a clear description of what changed and why
+3. Run `npm test` to verify nothing is broken
+4. Open a pull request with a clear description of what changed and why
+
+Maintainers cut releases via the `Release` GitHub Actions workflow, which bumps the version, builds, and publishes to npm.
 
 ## Reporting bugs
 

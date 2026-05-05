@@ -6,9 +6,13 @@
   "bin": {
     "npm-license-scraper": "dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "compile": "tsc",
     "build": "npm run compile && babel src --extensions \".ts\" --out-dir dist",
+    "prepublishOnly": "npm run build",
     "test": "./scripts/test.sh"
   },
   "keywords": [
