@@ -1,16 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "esModuleInterop": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "types": ["node"],
     "noImplicitAny": true,
     "noEmit": true,
     "noUnusedLocals": true,
-    "paths": {
-      "*": ["node_modules/*"]
-    },
-    "target": "es6",
+    "target": "es2020",
     "declaration": true,
     "strict": true,
     "skipLibCheck": true

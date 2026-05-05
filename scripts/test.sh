@@ -59,7 +59,7 @@ assert_contains licenses.ts "typescript"
 assert_contains licenses.ts "@babel/core"
 
 echo "Type-checking generated TypeScript..."
-npx tsc --noEmit --strict --skipLibCheck licenses.ts
+npx tsc --noEmit --strict --skipLibCheck --ignoreConfig licenses.ts
 
 rm -f licenses.json licenses.ts
 
