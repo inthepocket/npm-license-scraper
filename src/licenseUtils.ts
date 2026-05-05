@@ -14,5 +14,4 @@ export const licenseSnippets = [
   'The GNU General Public License is a free, copyleft license for software and other kinds of works.',
 ];
 
-export const isValidLicense = (license?: string) =>
-  validLicense.some((i) => i === license);
+export const isValidLicense = (license?: string) => validLicense.some(i => i === license);

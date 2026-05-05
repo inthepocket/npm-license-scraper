@@ -11,9 +11,7 @@ function hasProp(o: Record<string, any>, prop: string) {
  * By default returns both dependencies and dev dependencies as a tuple.
  * If false is passed, will return a tuple with only the dependencies
  */
-export async function getDependencies(
-  includeDev: boolean,
-): Promise<[string[], string[] | null]> {
+export async function getDependencies(includeDev: boolean): Promise<[string[], string[] | null]> {
   try {
     const pkg = await readJSONFile(path.join(process.cwd(), 'package.json'));
 
@@ -40,21 +38,21 @@ export async function getDependencies(
  * Emulating node js module resolution (see: https://medium.com/outbrain-engineering/node-js-module-resolution-af46715784ef)
  */
 export async function getPackageDescriptor(
-    dep: string,
-    basePath = process.cwd(),
-    basePathTries: string[] = []
-  ): Promise<{
+  dep: string,
+  basePath = process.cwd(),
+  basePathTries: string[] = [],
+): Promise<{
   basePath: string;
   pkg: any;
 }> {
   try {
     const pkg = await readJSONFile(path.join(basePath, 'node_modules', dep, 'package.json'), false);
 
-    return { 
+    return {
       pkg,
       basePath: path.join(basePath, 'node_modules', dep),
     };
-  } catch (error) {
+  } catch {
     basePathTries = [...basePathTries, path.join(basePath, 'node_modules', dep)];
 
     if (basePath === '/') {
@@ -70,14 +68,9 @@ export async function getPackageDescriptor(
  * Returns metadata for package.json content
  */
 export function getPackageInfo(pkg: PackageJSON) {
-  const [url] = [
-    pkg.homepage,
-    pkg.repository?.url,
-    pkg.repository?.baseUrl,
-    pkg.repo,
-  ]
+  const [url] = [pkg.homepage, pkg.repository?.url, pkg.repository?.baseUrl, pkg.repo]
     .filter(Boolean)
-    .filter((url) => url?.startsWith('https'));
+    .filter(url => url?.startsWith('https'));
 
   return {
     version: pkg.version,
