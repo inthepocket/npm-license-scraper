@@ -1,11 +1,11 @@
 const presets = [
-  "@babel/preset-typescript",
+  '@babel/preset-typescript',
   [
-    "@babel/env",
+    '@babel/env',
     {
       targets: {
         node: true,
-      }
+      },
     },
   ],
 ];

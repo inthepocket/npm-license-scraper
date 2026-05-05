@@ -8,7 +8,6 @@ import { parseCLIFlags, diff } from './util';
 import { getPackageDescriptor, getPackageInfo, getDependencies } from './packageUtils';
 import { formatAsTypeScript } from './formatters';
 
-
 async function readFromLicenseFile(basePath: string) {
   const matches = await fs.readdir(basePath);
   const validLicenseFiles = matches.filter(match => match.toUpperCase().startsWith('LICENSE'));
@@ -65,7 +64,7 @@ async function getPackageDetails(dep: string) {
       dependencies = diff(dependencies, flags.exclude);
     } else if (typeof flags.exclude === 'string') {
       // If only one dependency provided, exclude it from current dependencies
-      dependencies = dependencies.filter(dep => dep !== (flags.exclude));
+      dependencies = dependencies.filter(dep => dep !== flags.exclude);
     }
   }
 

@@ -18,19 +18,19 @@ export function parseCLIFlags(args: typeof process.argv, verbose = false): CLIFl
 
       return {
         ...a,
-        [key]: (Array.isArray(value) && value.length === 1) ? value[0] : value,
+        [key]: Array.isArray(value) && value.length === 1 ? value[0] : value,
       };
     }, {});
 
   return flags;
-};
+}
 
 /**
  * Returns the differences between 2 arrays
  */
 export function diff(a: any[], b: any[]) {
   return [...new Set(a.filter(i => !new Set(b).has(i)))];
-};
+}
 
 /**
  * Safely read a file and parse it as JSON
